@@ -8,7 +8,15 @@
 
   //function to add item from user input into list
   const addContact = () =>{
-    if(newName.value.trim() === ''){
+    if(newName.value != "" && newNum.value != ""&& (newNum.value.length == 10 || newNum.value.length == 7)){
+      contactList.value.push({
+      contact: newName.value,
+      number: newNum.value,
+      })
+      newName.value = ''
+      newNum.value = ''
+    }
+    else if(newName.value.trim() === ''){
       alert("Input a name to add to the Contact List.")
       return
     }
@@ -20,12 +28,10 @@
       alert("Input a name and phone number to add to the Contact List.")
       return
     }
-    contactList.value.push({
-      contact: newName.value,
-      number: newNum.value,
-    })
-    newName.value = ''
-    newNum.value = ''
+    else if (newNum.value == "" || (newNum.value.length != 10 || newNum.value.length != 7) && newName.value != "") {
+      alert("Input a 7 or 10 digit phone number to add to the Contact List.")
+      return
+    }
   }
   
   const removeContact = (item) =>{
